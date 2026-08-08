@@ -382,3 +382,11 @@ logoutButton.addEventListener("click", function () {
 /* ---------- Check Login on Page Load ---------- */
 
 updateLoginStatus();
+
+const API_KEY = "95cc9d7aca405fad4e649aec3ce05eae";
+const API_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+fetch(API_URL).then( response => response.json()).then(data => {
+        console.log(data);
+}).catch(error => {
+        console.log("Error:", error);
+});
