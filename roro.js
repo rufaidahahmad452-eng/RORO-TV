@@ -385,8 +385,29 @@ updateLoginStatus();
 
 const API_KEY = "95cc9d7aca405fad4e649aec3ce05eae";
 const API_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+const movieCards = document.querySelector("#movieCards");
 fetch(API_URL).then( response => response.json()).then(data => {
         console.log(data);
-}).catch(error => {
+
+        data.results.forEach(function(movie) {
+            const card = document.childElement("div");
+            card.classList.add("card");
+            const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: "tv.jpeg";
+            card.innerHTML = `<img src="${poster}" alt="${movie.title}">
+
+                <div class="card-info">
+                    <h3>${movie.title}</h3>
+                    <p>Movie</p>
+                    <span>⭐ ${movie.vote_average.toFixed(1)}</span>
+                </div>
+                 `;
+            movieCards.appendChild(card);
+
+        });
+
+    })
+    .catch(error => {
+
         console.log("Error:", error);
-});
+
+    });
