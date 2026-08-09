@@ -79,29 +79,62 @@ startButton.addEventListener("click", function () {
         SEARCH
 ========================================== */
 
+/* ==========================================
+        SEARCH
+========================================== */
+
 const searchButton = document.querySelector("#searchBtn");
 const searchBox = document.querySelector(".search-box");
 const searchInput = document.querySelector("#searchInput");
-const cards = document.querySelectorAll(".card");
+const movieCards = document.querySelector("#movieCards");
+
+
+// ---------- API KEY ----------
+
+const API_KEY = "95cc9d7aca405fad4e649aec3ce05eae";
+
+
+// ---------- Trending Movies URL ----------
+
+const API_URL =
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+
+
+// ---------- Open / Close Search ----------
 
 searchButton.addEventListener("click", function (event) {
 
     event.preventDefault();
 
+    event.stopPropagation();
+
     searchBox.classList.toggle("show");
 
-    if (!searchBox.classList.contains("show")) {
+    if (searchBox.classList.contains("show")) {
+
+        searchInput.focus();
+
+    } else {
 
         searchInput.value = "";
 
-        cards.forEach(function (card) {
-            card.style.display = "block";
-        });
+        loadTrendingMovies();
 
     }
 
 });
 
+
+// ---------- Prevent Search Box from Closing ----------
+
+searchBox.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+});
+
+
+// ---------- Close Search When Clicking Outside ----------
 
 document.addEventListener("click", function (event) {
 
@@ -114,37 +147,121 @@ document.addEventListener("click", function (event) {
 
         searchInput.value = "";
 
-        cards.forEach(function (card) {
-            card.style.display = "block";
-        });
+        loadTrendingMovies();
 
     }
 
 });
 
 
+// ---------- Search Input ----------
+
 searchInput.addEventListener("keyup", function () {
 
-    const searchValue = searchInput.value.toLowerCase();
+    const searchValue = searchInput.value.trim();
 
-    cards.forEach(function (card) {
+    if (searchValue === "") {
 
-        const movieName = card.querySelector("h3").textContent.toLowerCase();
+        loadTrendingMovies();
 
-        if (movieName.includes(searchValue)) {
+        return;
 
-            card.style.display = "block";
+    }
 
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
+    searchMovies(searchValue);
 
 });
 
+
+// ==========================================
+//        LOAD TRENDING MOVIES
+// ==========================================
+
+function loadTrendingMovies() {
+
+    fetch(API_URL)
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            displayMovies(data.results);
+
+        })
+
+        .catch(error => {
+
+            console.log("Trending Error:", error);
+
+        });
+
+}
+
+
+// ==========================================
+//        SEARCH MOVIES
+// ==========================================
+
+function searchMovies(query) {
+
+    const searchURL =
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`;
+
+    fetch(searchURL)
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            displayMovies(data.results);
+
+        })
+
+        .catch(error => {
+
+            console.log("Search Error:", error);
+
+        });
+
+}
+
+
+// ==========================================
+//        DISPLAY MOVIES
+// ==========================================
+
+function displayMovies(movies) {
+
+    movieCards.innerHTML = "";
+
+    movies.forEach(function (movie) {
+
+        const card = document.createElement("div");
+
+        card.classList.add("card");
+
+
+        const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: "tv.jpeg";
+        const rating = movie.vote_average ? movie.vote_average.toFixed(1) : "N/A";
+        card.innerHTML = `
+
+            <img src="${poster}" alt="${movie.title}">
+            <div class="card-info">
+                <h3>${movie.title}</h3>
+                <p>Movie</p>
+                <span>⭐ ${rating}</span>
+            </div>
+        `;
+        movieCards.appendChild(card);
+
+    });
+
+}
+
+
+// ---------- Load Trending Movies When Page Opens ----------
+
+loadTrendingMovies();
 
 /* ==========================================
         NOTIFICATIONS
@@ -383,31 +500,4 @@ logoutButton.addEventListener("click", function () {
 
 updateLoginStatus();
 
-const API_KEY = "95cc9d7aca405fad4e649aec3ce05eae";
-const API_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
-const movieCards = document.querySelector("#movieCards");
-fetch(API_URL).then( response => response.json()).then(data => {
-        console.log(data);
 
-        data.results.forEach(function(movie) {
-            const card = document.createElement("div");
-            card.classList.add("card");
-            const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: "tv.jpeg";
-            card.innerHTML = `<img src="${poster}" alt="${movie.title}">
-
-                <div class="card-info">
-                    <h3>${movie.title}</h3>
-                    <p>Movie</p>
-                    <span>⭐ ${movie.vote_average.toFixed(1)}</span>
-                </div>
-                 `;
-            movieCards.appendChild(card);
-
-        });
-
-    })
-    .catch(error => {
-
-        console.log("Error:", error);
-
-    });
