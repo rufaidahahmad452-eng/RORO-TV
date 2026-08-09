@@ -390,7 +390,7 @@ fetch(API_URL).then( response => response.json()).then(data => {
         console.log(data);
 
         data.results.forEach(function(movie) {
-            const card = document.childElement("div");
+            const card = document.createElement("div");
             card.classList.add("card");
             const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: "tv.jpeg";
             card.innerHTML = `<img src="${poster}" alt="${movie.title}">
