@@ -4,6 +4,13 @@
 ========================================== */
 
 
+const myListButton = document.querySelector(".btn-secondary");
+
+myListButton.addEventListener("click", function () {
+    window.location.href = "Mylist.html";
+});
+
+
 
 
 /* ==========================================
