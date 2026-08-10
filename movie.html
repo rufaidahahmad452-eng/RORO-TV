@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RORO TV - Movies</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="roro.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>🎬 RORO TV</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tv-shows.html">TV Shows</a></li>
+                <li><a href="movie.html">Movies</a></li>
+                <li><a href="Mylist.html">My List</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" id="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search movies...">
+                </div>
+                
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="trending">
+            <h2>🎬 Popular Movies</h2>
+            <div class="cards" id="movieCards">
+            </div>
+        </section>
+    </main>
+
+    <div class="login-popup" id="loginPopup">
+        <div class="login-content">
+            
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password"id="password" placeholder="Password">
+
+            <label class="remember"> <input type="checkbox" id="rememberMe"> Remember Me </label>
+            <p class="login-message" id="loginMessage"></p>
+            <button class="btn-primary" id="loginSubmit">Login</button>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>© 2026 RORO TV | Made with ❤️ by Roro </p>
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="movie.js"></script>
+
+</body>
+
+</html>
