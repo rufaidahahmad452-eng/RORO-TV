@@ -8,6 +8,7 @@ function displayMovies(movies) {
     movies.forEach(function(movie) {
         const card = document.createElement("div");
         card.classList.add("card");
+        card.dataset.movieId = movie.id;
         const poster = movie.poster_path? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: "tv.jpeg";
         const rating = movie.vote_average ? movie.vote_average.toFixed(1): "N/A";
         const exists = myList.some(function (item) {
@@ -41,6 +42,9 @@ function displayMovies(movies) {
                     localStorage.setItem("myList",JSON.stringify(myList));
                     addButton.textContent =  "✓ Added";
                 }
+            });
+            card.addEventListener("click", function() {
+                window.location.href = `movie-details.html?id=${movie.id}`;
             });
         movieCards.appendChild(card);
     });
