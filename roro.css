@@ -525,42 +525,32 @@ footer{
 /* ---------- Tablet ---------- */
 
 @media (max-width: 992px){
-
     .cards{
         grid-template-columns: repeat(2, 1fr);
     }
-
     .hero{
         flex-direction: column;
     }
-
     .hero-text h2{
         font-size: 2.5rem;
     }
-
     .hero-image img{
         width: 70%;
     }
-
 }
-
 
 /* ---------- Mobile ---------- */
 
 @media (max-width: 768px){
-
     nav{
         flex-direction: column;
         gap: 20px;
     }
-
     .nav-links{
         flex-direction: column;
         align-items: center;
     }
-
 }
-
 
 /* ---------- Small Mobile ---------- */
 
@@ -569,37 +559,29 @@ footer{
     .cards{
         grid-template-columns: 1fr;
     }
-
     nav{
         padding: 20px;
     }
-
     .logo h1{
         font-size: 1.5rem;
     }
-
     .hero{
         padding: 40px 20px;
         text-align: center;
     }
-
     .hero-text h2{
         font-size: 2.2rem;
     }
-
     .hero-text p{
         font-size: 1rem;
     }
-
     .hero-buttons{
         flex-direction: column;
         justify-content: center;
     }
-
     .hero-image img{
         max-width: 280px;
     }
-
 }
 
 .added{
@@ -635,12 +617,12 @@ footer{
     transform: scale(0.95);
 }
 .remove-btn{
-    background: #e74c5b;
+    background: #e53935;
     color: white;
     margin-left: 8px;
 }
 .remove-btn:hover{
-    background: #ff6875;
+    background: #c62828;
     transform: translateY(-2px);
 }
 .remove-btn:active{
@@ -664,4 +646,345 @@ footer{
     align-self: flex-end;
     margin-top: -25px;
     min-width: 120px;
+}
+
+.movie-details , .shows-details ,.myList-details {
+   min-height: 80vh; 
+   padding: 80px 8%;
+   display: flex;
+   align-items: center;
+   gap: 60px;
+}
+
+.details-poster{
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.details-poster img{
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+    box-shadow:  0 15px 40px rgba(0, 0, 0, 0.5);
+}
+.details-info{
+    max-width: 650px;
+}
+.details-info h1{
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: white;
+}
+.details-info p{
+    color: #c5c5d8;
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+.details-info .add-list-btn {
+    margin-top: 20px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg ,#7c4dff , #a855f7);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.details-info .add-list-btn :hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 77, 255, .4);
+}
+@media (max-width:768px){
+    .movie-details{
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 5%;
+        gap: 30px;
+    }
+    .details-poster{
+        width: 250px;
+    }
+    .details-poster img{
+            height: 370px;
+    }
+    .details-info h1{
+        font-size: 34px;
+    }
+    .details-info p{
+        font-size: 16px;
+    }
+}
+.details-info .remove-btn {
+    margin-top: 20px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #e53935;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.details-info .remove-btn:hover {
+    background: #c62828;
+    transform: translateY(-3px);
+}
+
+.season-section {
+   margin-top: 40px;
+   width: 100%;
+}
+.season-section h2{
+    margin: 0 0 20px;
+    font-size: 25px;
+}
+#seasonsContainer {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px 20px;
+    scrollbar-width: none;
+}
+
+#seasonsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.season-item {
+    min-width: 190px;
+    width: 190px;
+    flex-shrink: 0;
+}
+
+.season-item img {
+    width: 190px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.season-info {
+    padding: 10px 0;
+}
+
+
+/* EPISODES */
+
+#episodesContainer {
+    display: flex;
+    gap: 15px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding: 20px 5px;
+
+    scrollbar-width: none;
+}
+
+#episodesContainer::-webkit-scrollbar {
+    display: none;
+}
+
+#episodesContainer .episode-card {
+    min-width: 240px;
+    width: 240px;
+    flex-shrink: 0;
+
+    border-radius: 12px;
+    overflow: hidden;
+
+    background: #151827;
+}
+
+#episodesContainer .episode-card img {
+    width: 100%;
+    height: 135px;
+    object-fit: cover;
+}
+.season-btn {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--primary);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition: 0.2s ease;
+}
+
+.season-btn:hover {
+    transform: scale(1.1);
+}
+
+.season-btn:active {
+    transform: scale(0.95);
+}
+/* TV DETAILS */
+
+#showsDetails {
+    display: flex;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+.details-poster {
+    flex-shrink: 0;
+}
+
+.details-poster img {
+    width: 280px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.details-info {
+    flex: 1;
+}
+
+.details-info h1 {
+    margin-top: 0;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.details-info p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+.seasons-section {
+    width: 100%;
+    margin-top: 40px;
+}
+/* ===== TV DETAILS FINAL SIZE ===== */
+
+#showsDetails {
+    width: 90%;
+    max-width: 1400px;
+    margin: 50px auto;
+    
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+/* Poster */
+.details-poster {
+    flex: 0 0 340px;
+}
+
+.details-poster img {
+    width: 340px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* Information */
+.details-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.details-info h1 {
+    font-size: 42px;
+    margin: 0 0 20px;
+}
+
+.details-info > p {
+    font-size: 18px;
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.details-info > p:last-of-type {
+    max-width: 900px;
+    line-height: 1.8;
+}
+
+/* My List */
+.add-list-btn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+/* Seasons */
+.seasons-section {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.seasons-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#seasonsContainer {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    width: 100%;
+
+    gap: 25px;
+
+    overflow-x: auto;
+
+    padding: 5px 5px 20px;
+
+    scrollbar-width: none;
+}
+
+#seasonsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.season-item {
+    width: 210px;
+    min-width: 210px;
+    flex: 0 0 210px;
+}
+
+.season-item img {
+    width: 210px;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.season-info {
+    padding: 10px 0;
+}
+
+.season-info h3 {
+    font-size: 17px;
+    margin: 5px 0;
+}
+
+.season-info p {
+    font-size: 14px;
+    margin: 5px 0;
 }
