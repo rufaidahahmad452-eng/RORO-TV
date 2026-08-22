@@ -21,19 +21,29 @@ function displayShows(show) {
 
         </div> `;
         const addButton = card.querySelector(".add-list-btn");
-        addButton.onclick = function() {
-            if(!exists){
-                    myList.push({
-                        id :show.id,
-                        title:show.title,
-                        poster:poster,
-                        type:"TV Show",
-                        rating:rating
-                    });
-                    localStorage.setItem("myList",JSON.stringify(myList));
-                    addButton.textContent =  "✓ Added";
-        }
-    };
+
+addButton.addEventListener("click", function(event) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!exists) {
+
+        myList.push({
+            id: show.id,
+            title: show.name,
+            poster: poster,
+            type: "TV Show",
+            rating: rating
+        });
+        localStorage.setItem("myList", JSON.stringify(myList) );
+        addButton.textContent = "✓ Added";
+    }
+
+});
+    card.addEventListener("click", function () {
+    window.location.href = `shows-details.html?id=${show.id}`;
+});
         tvCards.appendChild(card);
 
     });
