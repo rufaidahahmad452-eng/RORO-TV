@@ -20,11 +20,20 @@ function displayMyList() {
             <span>⭐ ${item.rating}</span>
             <button class="remove-btn"><i class="fa-solid fa-trash"></i> Remove</button>
         </div> `;
-        card.querySelector(".remove-btn").onclick = function(){
-            myList = myList.filter(movie => movie.id !== item.id);
-            localStorage.setItem("myList",JSON.stringify(myList));
-            displayMyList();
-        };
+        card.querySelector(".remove-btn").addEventListener("click", function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        myList = myList.filter(function(movie) {
+        return movie.id !== item.id;
+    });
+    localStorage.setItem("myList", JSON.stringify(myList));
+    displayMyList();
+});
+        card.addEventListener("click", function () {
+        window.location.href =
+        `mylist-details.html?id=${item.id}&type=${encodeURIComponent(item.type)}`;
+
+});
         myListCards.appendChild(card);
     });
 }
